@@ -164,9 +164,11 @@ class Embattle(object):
             """
             """
             try:
+                console.info('target_module: [%s], hook_module: [%s], function: [%s]' % (target_module, hook_module,function))
                 getattr(self.importer(hook_module), function)(target_module)
                 console.info("Detect hooker %s for target module %s", hook_module, target_module)
             except Exception as _:
+                console.warning("exception detail:: %s" % _)
                 console.warning("error occurred: %s" % traceback.format_exception(*sys.exc_info()))
 
         return _detect
